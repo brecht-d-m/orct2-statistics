@@ -139,9 +139,10 @@
             });
             
             function processData(data) {
+				var rows = data.split("\n");
+				
                 // start the table
-                var html = "<h2>OpenRCT2 statistics - data</h2>";
-			    html += "<table id=\"orct2-data-table\" class=\"table\">";
+                var html = "<table id=\"orct2-data-table\" class=\"table\">";
 
                 html +=
                     "<thead>" +
@@ -167,6 +168,7 @@
                                     "<option value=\"20\">20</option>" +
                                     "<option value=\"30\">30</option>" +
                                     "<option value=\"40\">40</option>" +
+									"<option value=\"" + rows.length + "\">" + rows.length + "</option>" +
                                 "</select>" +
                                 "<select class=\"pagenum input-mini\" title=\"Select page number\"></select>" +
                             "</th>" +
@@ -175,8 +177,6 @@
                 html += "<tbody>";
                 
                 // split into lines
-                var rows = data.split("\n");
-
                 var firstRow = true;
                 
                 // parse lines
