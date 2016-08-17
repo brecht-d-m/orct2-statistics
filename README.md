@@ -12,7 +12,7 @@ To start the script:
 ./count-values.sh $path_to_orct2
 ```
 
-The variable `path_to_orct2` can have for example following value: `~/Documents/openrct2/`. 
+The variable `path_to_orct2` can have for example following value: `~/Documents/openrct2/`.
 
 ## Data gathering and processing
 The data for the different statistics is gathered using following command:
@@ -35,3 +35,5 @@ git rev-list --count develop
 ```
 
 To process the data afterwards, a Python script was used. The data was read and transformed using the [Pandas library](http://pandas.pydata.org/) and the [Plotly library](https://plot.ly/).
+
+The graphs are available in separate HTML files.

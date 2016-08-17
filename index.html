@@ -44,16 +44,63 @@
         <![endif]-->
     </head>
     <body>
-        <div class="container theme-showcase" role="main">
-            <div class="page-header">
-                <h1>OpenRCT2 statistics</h1>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="page-header">
+                        <h1>OpenRCT2 statistics</h1>
+                    </div>
+                </div>
             </div>
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="orct2_graph.html"></iframe>
             </div>
-        </div> <!-- /container -->
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <h2>OpenRCT2 statistics - plots</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Plot</th>
+                                <th>PDF file</th>
+                                <th>PNG file</th>
+                                <th>HTML file</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>All</td>
+                                <td><a href="plt_all.pdf" target="_blank">link</a></td>
+                                <td><a href="plt_all.png" target="_blank">link</a></td>
+                                <td><a href="orct2_graph.html" target="_blank">link</a></td>
+                            </tr>
+                            <tr>
+                                <td>RCT2_ADDRESS</td>
+                                <td><a href="plt_address.pdf" target="_blank">link</a></td>
+                                <td><a href="plt_address.png" target="_blank">link</a></td>
+                                <td><a href="orct2_graph_address.html" target="_blank">link</a></td>
+                            </tr>
+                            <tr>
+                                <td>RCT2_CALL</td>
+                                <td><a href="plt_call.pdf" target="_blank">link</a></td>
+                                <td><a href="plt_call.png" target="_blank">link</a></td>
+                                <td><a href="orct2_graph_call.html" target="_blank">link</a></td>
+                            </tr>
+                            <tr>
+                                <td>RCT2_GLOBAL</td>
+                                <td><a href="plt_global.pdf" target="_blank">link</a></td>
+                                <td><a href="plt_global.png" target="_blank">link</a></td>
+                                <td><a href="orct2_graph_global.html" target="_blank">link</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-        <!--<br /><br /><br /><br />-->
+        <br /><br /><br /><br />
         
         <div id="footer">
             <a href="https://github.com/brecht-d-m/orct2-statistics" target="_blank">

@@ -25,4 +25,4 @@ done
 
 cd $current_dir
 
-python3 plot_counts_orct2.py
+python3 plot_statistics_orct2.py
