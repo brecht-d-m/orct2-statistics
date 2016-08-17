@@ -26,3 +26,5 @@ done
 cd $current_dir
 
 python3 plot_statistics_orct2.py
+
+sed -i "$ d" $output_file

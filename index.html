@@ -17,6 +17,10 @@
         <!-- Font awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         
+        <!-- Tablesorter -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.2/css/jquery.tablesorter.pager.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.2/css/theme.bootstrap.min.css">
+        
         <style>
             .text-justify {
                 text-align: justify;
@@ -96,6 +100,9 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <h2>OpenRCT2 statistics - data</h2>
+                    <div id="orct2-data"></div>
                 </div>
             </div>
         </div>
@@ -113,5 +120,110 @@
     
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <!-- Tablesorter -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.2/js/jquery.tablesorter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.2/js/jquery.tablesorter.widgets.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.27.2/js/extras/jquery.tablesorter.pager.min.js"></script>
+        
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    type: "GET",
+                    url: "orct2_statistics.csv",
+                    dataType: "text",
+                    success: function(data) {processData(data);}
+                });
+            });
+            
+            function processData(data) {
+                // start the table
+                var html = "<table id=\"orct2-data-table\" class=\"table\">";
+
+                html +=
+                    "<thead>" +
+                        "<tr>" +
+                            "<th>Commit ID</th>" +
+                            "<th>Commit timestamp</th>" +
+                            "<th># RCT2_GLOBAL</th>" +
+                            "<th># RCT2_ADDRESS</th>" +
+                            "<th># RCT2_CALL</th>" +
+                        "</tr>" +
+                    "</thead>";
+                html +=   
+                    "<tfoot>" +
+                        "<tr>" +
+                            "<th colspan=\"7\" class=\"ts-pager form-horizontal\">" +
+                                "<button type=\"button\" class=\"btn first\"><i class=\"icon-step-backward glyphicon glyphicon-step-backward\"></i></button>" +
+                                "<button type=\"button\" class=\"btn prev\"><i class=\"icon-arrow-left glyphicon glyphicon-backward\"></i></button>" +
+                                "<span class=\"pagedisplay\"></span> <!-- this can be any element, including an input -->" +
+                                "<button type=\"button\" class=\"btn next\"><i class=\"icon-arrow-right glyphicon glyphicon-forward\"></i></button>" +
+                                "<button type=\"button\" class=\"btn last\"><i class=\"icon-step-forward glyphicon glyphicon-step-forward\"></i></button>" +
+                                "<select class=\"pagesize input-mini\" title=\"Select page size\">" +
+                                    "<option selected=\"selected\" value=\"10\">10</option>" +
+                                    "<option value=\"20\">20</option>" +
+                                    "<option value=\"30\">30</option>" +
+                                    "<option value=\"40\">40</option>" +
+                                "</select>" +
+                                "<select class=\"pagenum input-mini\" title=\"Select page number\"></select>" +
+                            "</th>" +
+                        "</tr>" +
+                    "</tfoot>";
+                html += "<tbody>";
+                
+                // split into lines
+                var rows = data.split("\n");
+
+                var firstRow = true;
+                
+                // parse lines
+                rows.forEach( function getvalues(row) {
+                    if(!firstRow) {
+                        // start a table row
+                        html += "<tr>";
+
+                        // split line into columns
+                        var columns = row.split(",");
+
+                        html += "<td>" + columns[0] + "</td>";
+                        html += "<td>" + columns[1] + "</td>";
+                        html += "<td>" + columns[2] + "</td>";
+                        html += "<td>" + columns[3] + "</td>";
+                        html += "<td>" + columns[4] + "</td>";
+
+                        // close row
+                        html += "</tr>";
+                    } else {
+                        firstRow = false;
+                    }
+                })
+                
+                // close table
+                html += "</tbody></table>";
+
+                // insert into div
+                $("#orct2-data").append(html);
+                $("#orct2-data-table").tablesorter({
+                    theme: "bootstrap",
+                    widthFixed: true,
+                    headerTemplate : '{content} {icon}',
+                    widgets: ["uitheme", "filter", "zebra", "columns"],
+                    usNumberFormat : false,
+			        sortReset      : true,
+			        sortRestart    : true,
+                    widgetOptions : {
+                        zebra : ["even", "odd"],
+                        filter_reset : ".reset",
+                        filter_cssFilter: "form-control"
+                    }
+                })
+                .tablesorterPager({
+                    container: $(".ts-pager"),
+                    cssGoto  : ".pagenum",
+                    removeRows: true,
+                    output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
+                });
+            }
+        </script>
   </body>
 </html>
