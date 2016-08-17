@@ -51,32 +51,9 @@
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="orct2_graph.html"></iframe>
             </div>
-            
-            <h2>About</h2>
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-lg-8">
-                    <p class="text-justify">This plot shows the number of occurences of <code>RCT2_ADDRESS</code>, <code>RCT2_CALL</code>, or <code>RCT2_GLOBAL</code> per commit for the <a href="http://github.com/openrct2/openrct2" target="_blank">OpenRCT2 project</a>. This plot is created using <a href="https://plot.ly/" target="_blank">plot.ly</a> - a data visualization tool. The code to gather the data and generate the plot is available on GitHub (see the footer).</p>
-                    <p class="text-justify">You can filter in the plot by clicking on the different keys in the legend. It is also possible to zoom in and to zoom back out (double click on the plot at the top).</p>
-                </div>
-            </div>
-            
-            <h2>Data gathering and processing</h2>
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-lg-8">
-                    <p class="text-justify">The data for the different statistics is gathered using following command:</p>
-                    <pre><p>git grep -h -c $fragment $commit | numsum</p></pre>
-                    <p class="text-justify">
-                        The variable <code>$fragment</code> will have the values: <code>RCT2_ADDRESS</code>, <code>RCT2_CALL</code>, or <code>RCT2_GLOBAL</code>. The results of these commands are written to a csv file (orct2_statistics.csv). 
-                        The header of this file has following structure: commit id, timestamp commit, RCT2_GLOBAL occurences, RCT2_ADDRESS occurences, RCT2_CALL occurences
-                    </p>
-                    <p class="text-justify">A list of all the commits is retrieved using following command:</p>
-                    <pre><p>git rev-list --count develop</p></pre>
-                    <p class="text-justify">The process the data afterwards, a Python script was used. The data was read and transformed using the <a href="http://pandas.pydata.org/" target="_blank">Pandas library</a>.</p>
-                </div>
-            </div>
         </div> <!-- /container -->
 
-        <br /><br /><br /><br />
+        <!--<br /><br /><br /><br />-->
         
         <div id="footer">
             <a href="https://github.com/brecht-d-m/orct2-statistics" target="_blank">

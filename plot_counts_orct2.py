@@ -57,7 +57,7 @@ def plot_all():
         count_global
     ]
     
-    title = "Scatter plot of RCT2_ADDRESS, RCT2_CALL, and RCT2_GLOBAL occurences per commit"
+    title = "Scatter plot of RCT2_ADDRESS, RCT2_CALL, and RCT2_GLOBAL occurrences per commit"
     yaxis_title = "Number of occurrences"
     filename = "orct2_graph.html"
     
@@ -68,21 +68,21 @@ def plot_global():
         go.Scatter(x=count_data["timestamp"], y=count_data["count_global"])
     ]
     
-    _plot(data, "Scatter plot of RCT2_GLOBAL occurences per commit", "Number of occurences", "graph_orct2_global.html")
+    _plot(data, "Scatter plot of RCT2_GLOBAL occurrences per commit", "Number of occurrences", "graph_orct2_global.html")
 
 def plot_address():
     data = [
         go.Scatter(x=count_data["timestamp"], y=count_data["count_address"])
     ]
     
-    _plot(data, "Scatter plot of RCT2_ADDRESS occurences per commit", "Number of occurences", "graph_orct2_address.html")
+    _plot(data, "Scatter plot of RCT2_ADDRESS occurrences per commit", "Number of occurrences", "graph_orct2_address.html")
 
 def plot_call():
     data = [
         go.Scatter(x=count_data["timestamp"], y=count_data["count_call"])
     ]
     
-    _plot(data, "Scatter plot of RCT2_CALL occurences per commit", "Number of occurences", "graph_orct2_call.html")
+    _plot(data, "Scatter plot of RCT2_CALL occurrences per commit", "Number of occurrences", "graph_orct2_call.html")
 
 plot_global()
 plot_address()
